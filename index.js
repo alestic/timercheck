@@ -1,6 +1,5 @@
 var doc = require('dynamodb-doc');
 var dynamo = new doc.DynamoDB();
-
 exports.handler = function(event, context) {
     var response = {
         "timer": event.timer,
@@ -15,7 +14,7 @@ exports.handler = function(event, context) {
         }
     }, function(error, timer_result) {
         if (error) {
-            context.fail(error);
+            context.fail("500: error retrieving timer");
             return;
         }
         if (timer_result.Item) {
@@ -34,10 +33,14 @@ exports.handler = function(event, context) {
                     "start_seconds": new_start_seconds
                 }
             }, function (error, result) {
+                if (error) {
+                    context.fail("500: error setting timer");
+                    return;
+                }
                 response.message = "Timer countdown updated";
                 response.new_start_time = response.now;
                 response.new_start_seconds = new_start_seconds;
-                context.done(error, response);
+                context.succeed(response);
             });
         } else {
             if (!timer_result.Item) {
@@ -45,9 +48,7 @@ exports.handler = function(event, context) {
                 return;
             } 
             if (response.seconds_remaining <= 0) {
-                response.status = "timeout";
-                response.message = "Timer timed out";
-                context.done("504: timer timed out", response);
+                context.fail("504: timer timed out");
                 return;
             }
             response.message = "Timer still running";
