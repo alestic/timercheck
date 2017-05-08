@@ -47,7 +47,7 @@ def timer_table(table_name):
             print('ERROR creating table "%s": %s' % (table_name, e))
     return dynamodb.Table(table_name)
 
-def process(timer, count):
+def timercheck(timer, count):
     try:
         now = int(time.time())
         results = {
@@ -94,11 +94,11 @@ def index():
 
 @app.route('/{timer}')
 def get_timer(timer):
-    return process(timer, None)
+    return timercheck(timer, None)
 
 @app.route('/{timer}/{count}')
 def set_timer(timer, count):
-    return process(timer, count)
+    return timercheck(timer, count)
 
 @app.route('/introspect')
 def introspect():
