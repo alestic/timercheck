@@ -32,4 +32,4 @@ logs:: ## Show AWS Lamda function logs
 	chalice logs --include-lambda-messages --stage $(STAGE)
 
 clean:: ## Cleanup local directory
-	rm -rf $(VIRTUALENV) __pycache_ .chalice/{venv,deployments,deployed.json}
+	rm -rf $(VIRTUALENV) __pycache__ .chalice/{venv,deployments,deployed.json}
