@@ -9,3 +9,17 @@ please read the following article:
 > TimerCheck.io - Countdown Timer Microservice
 
 > https://alestic.com/2015/07/timercheck-scheduled-events-monitoring/
+
+The following commands work on Ubuntu 17.04 Zesty:
+
+Install prerequisites:
+
+    make setup
+
+Deploy to AWS account:
+
+    make deploy
+
+Show AWS Lambda function logs
+
+    make logs
