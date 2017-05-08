@@ -1,5 +1,5 @@
+.virtualenv
 .chalice/deployments/
 .chalice/venv/
-virtualenv
+.chalice/deployed.json
 __pycache__
-.virtualenv
