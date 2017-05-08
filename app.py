@@ -1,7 +1,6 @@
 from chalice import Chalice, Response
 import time
 import boto3
-from botocore.exceptions import ClientError
 
 app = Chalice(app_name='timercheck')
 home_url = 'https://alestic.com/2015/07/timercheck-scheduled-events-monitoring/'
