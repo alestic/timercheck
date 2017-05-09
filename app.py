@@ -4,7 +4,7 @@ import boto3
 
 app = Chalice(app_name='timercheck')
 home_url = 'https://alestic.com/2015/07/timercheck-scheduled-events-monitoring/'
-table_name = 'timer'
+table_name = 'timer'  #TBD: Convert to chalice environment variable
 
 def error(status, message):
     return Response(
